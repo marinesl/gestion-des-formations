@@ -8,4 +8,4 @@ Gestion des formations sportives
 - Année : 2015
 
 ## Enoncé
-Créer une application simple de création, modification des formations d'une association sportive
+Créer une application simple de création, modification des formations d'une association sportive  
