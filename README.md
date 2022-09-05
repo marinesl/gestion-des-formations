@@ -58,6 +58,8 @@ Guide d'utilisation de la plateforme en [PDF](commun/image/guide.pdf).
 2. Importez le fichier gestion-des-formations-php.sql dans votre base de données
 
 3. Testez
+    - login : admin
+    - mot de passe : azerty
 
 
 ## Optimisations pour la V2
