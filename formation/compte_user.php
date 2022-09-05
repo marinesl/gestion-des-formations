@@ -21,7 +21,7 @@
 		
 		<?php
 			if(isset($_GET['erreur']))
-				echo "<p> <font color='red'>".$_GET['erreur']."</font></p>";
+				echo "<p class='red'>".$_GET['erreur']."</p>";
 		?>
 
 		<div class="row">	
@@ -30,43 +30,31 @@
 				<div class="col-md-4">
 					<input class="form-control" type='text' id='nom' name='nom' value="<?php echo $query[0]['nom_utilisateur']; ?>">
 				</div>
-				
-				<br><br>
-				
+	
 				<label class="col-md-4">Prénom :</label>
 				<div class="col-md-4">
 					<input class="form-control" type='text' id='prenom' name='prenom' value="<?php echo $query[0]['prenom_utilisateur']; ?>">
 				</div>
-				
-				<br><br>
-						
+	
 				<label class="col-md-4">Login :</label>
 				<div class="col-md-4">
 					<input class="form-control" type='text' id='login' name='login' value="<?php echo $query[0]['login_utilisateur']; ?>">
 				</div>
 				
-				<br><br>
-				
 				<label class="col-md-4">Ancien mot de passe :</label>
 				<div class="col-md-4">
 					<input class="form-control" type='password' id='ancien' name='ancien'>
 				</div>
-		
-				<br><br>
 						
 				<label class="col-md-4">Nouveau mot de passe :</label>
 				<div class="col-md-4">
 					<input class="form-control" type='password' id='pw1' name='pw1'>
 				</div>
 				
-				<br><br>
-				
 				<label class="col-md-4">Confirmation du mot de passe :</label>
 				<div class="col-md-4">
 					<input class="form-control" type='password' id='pw2' name='pw2'>
 				</div>
-				
-				<br><br><br>
 				
 				<input type='hidden' id='id' name='id' value='<?php echo $_SESSION["id"]; ?>'>
 			
