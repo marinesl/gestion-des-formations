@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : lun. 05 sep. 2022 à 10:10
+-- Généré le : lun. 05 sep. 2022 à 14:25
 -- Version du serveur : 5.7.34
 -- Version de PHP : 7.4.21
 
@@ -24,29 +24,29 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Structure de la table `demande`
+-- Structure de la table `gdf_php_demande`
 --
 
-CREATE TABLE `demande` (
+CREATE TABLE `gdf_php_demande` (
   `id_formation` int(11) NOT NULL,
   `id_prerequis` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `demande`
+-- Déchargement des données de la table `gdf_php_demande`
 --
 
-INSERT INTO `demande` (`id_formation`, `id_prerequis`) VALUES
+INSERT INTO `gdf_php_demande` (`id_formation`, `id_prerequis`) VALUES
 (3, 1),
 (3, 3);
 
 -- --------------------------------------------------------
 
 --
--- Structure de la table `formation`
+-- Structure de la table `gdf_php_formation`
 --
 
-CREATE TABLE `formation` (
+CREATE TABLE `gdf_php_formation` (
   `id_formation` int(11) NOT NULL,
   `nom_formation` varchar(100) NOT NULL,
   `contenu_formation` varchar(500) NOT NULL,
@@ -57,10 +57,10 @@ CREATE TABLE `formation` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `formation`
+-- Déchargement des données de la table `gdf_php_formation`
 --
 
-INSERT INTO `formation` (`id_formation`, `nom_formation`, `contenu_formation`, `date_debut_formation`, `date_fin_formation`, `lieu_formation`, `prestataire_formation`) VALUES
+INSERT INTO `gdf_php_formation` (`id_formation`, `nom_formation`, `contenu_formation`, `date_debut_formation`, `date_fin_formation`, `lieu_formation`, `prestataire_formation`) VALUES
 (3, 'Conception Web', 'Points abordés lors de la formation : HTML ; CSS ; PHP ; Nouvelles technologies informatiques.', '2015-06-01', '2015-06-22', 'Paris 08', 'Web & Co'),
 (4, 'Comptabilité', 'Points abordés pendant la formation : Saisie et la vérification des pièces comptables ; Rapprochements bancaires ; Déclarations de TVA ; Reporting mensuel, trimestriel ; Suivi de la trésorerie et ajustements quotidiens ; Provisions mensuelles ; Clôtures mensuelles ; Participation aux travaux de bilan.', '2023-04-19', '2023-06-24', 'Paris 10', 'Membrado'),
 (5, 'Assistance administrative / Ressources humaines', 'Points abordés lors de la formation : Gestion administrative du personnel ; Gestion administrative et comptable ; Formation ; Aide à la réalisation de déclarations et documents obligatoires', '2025-04-16', '2025-07-11', 'Strasbourg', 'Beetween'),
@@ -70,20 +70,20 @@ INSERT INTO `formation` (`id_formation`, `nom_formation`, `contenu_formation`, `
 -- --------------------------------------------------------
 
 --
--- Structure de la table `inscription`
+-- Structure de la table `gdf_php_inscription`
 --
 
-CREATE TABLE `inscription` (
+CREATE TABLE `gdf_php_inscription` (
   `etat_inscription` varchar(10) NOT NULL,
   `id_utilisateur` int(11) NOT NULL,
   `id_formation` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `inscription`
+-- Déchargement des données de la table `gdf_php_inscription`
 --
 
-INSERT INTO `inscription` (`etat_inscription`, `id_utilisateur`, `id_formation`) VALUES
+INSERT INTO `gdf_php_inscription` (`etat_inscription`, `id_utilisateur`, `id_formation`) VALUES
 ('Terminée', 1, 3),
 ('Inscrit', 1, 4),
 ('Inscrit', 1, 5),
@@ -92,19 +92,19 @@ INSERT INTO `inscription` (`etat_inscription`, `id_utilisateur`, `id_formation`)
 -- --------------------------------------------------------
 
 --
--- Structure de la table `prerequis`
+-- Structure de la table `gdf_php_prerequis`
 --
 
-CREATE TABLE `prerequis` (
+CREATE TABLE `gdf_php_prerequis` (
   `id_prerequis` int(11) NOT NULL,
   `libelle_prerequis` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `prerequis`
+-- Déchargement des données de la table `gdf_php_prerequis`
 --
 
-INSERT INTO `prerequis` (`id_prerequis`, `libelle_prerequis`) VALUES
+INSERT INTO `gdf_php_prerequis` (`id_prerequis`, `libelle_prerequis`) VALUES
 (1, 'HTML'),
 (2, 'JavaScript'),
 (3, 'CSS');
@@ -112,10 +112,10 @@ INSERT INTO `prerequis` (`id_prerequis`, `libelle_prerequis`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `utilisateur`
+-- Structure de la table `gdf_php_utilisateur`
 --
 
-CREATE TABLE `utilisateur` (
+CREATE TABLE `gdf_php_utilisateur` (
   `id_utilisateur` int(11) NOT NULL,
   `nom_utilisateur` varchar(100) NOT NULL,
   `prenom_utilisateur` varchar(100) NOT NULL,
@@ -124,10 +124,10 @@ CREATE TABLE `utilisateur` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- Déchargement des données de la table `utilisateur`
+-- Déchargement des données de la table `gdf_php_utilisateur`
 --
 
-INSERT INTO `utilisateur` (`id_utilisateur`, `nom_utilisateur`, `prenom_utilisateur`, `login_utilisateur`, `mdp_utilisateur`) VALUES
+INSERT INTO `gdf_php_utilisateur` (`id_utilisateur`, `nom_utilisateur`, `prenom_utilisateur`, `login_utilisateur`, `mdp_utilisateur`) VALUES
 (1, 'admin', 'admin', 'admin', 'ab4f63f9ac65152575886860dde480a1');
 
 --
@@ -135,35 +135,35 @@ INSERT INTO `utilisateur` (`id_utilisateur`, `nom_utilisateur`, `prenom_utilisat
 --
 
 --
--- Index pour la table `demande`
+-- Index pour la table `gdf_php_demande`
 --
-ALTER TABLE `demande`
+ALTER TABLE `gdf_php_demande`
   ADD PRIMARY KEY (`id_formation`,`id_prerequis`),
   ADD KEY `FK_demande_id_prerequis` (`id_prerequis`);
 
 --
--- Index pour la table `formation`
+-- Index pour la table `gdf_php_formation`
 --
-ALTER TABLE `formation`
+ALTER TABLE `gdf_php_formation`
   ADD PRIMARY KEY (`id_formation`);
 
 --
--- Index pour la table `inscription`
+-- Index pour la table `gdf_php_inscription`
 --
-ALTER TABLE `inscription`
+ALTER TABLE `gdf_php_inscription`
   ADD PRIMARY KEY (`id_utilisateur`,`id_formation`),
   ADD KEY `FK_Inscription_id_formation` (`id_formation`);
 
 --
--- Index pour la table `prerequis`
+-- Index pour la table `gdf_php_prerequis`
 --
-ALTER TABLE `prerequis`
+ALTER TABLE `gdf_php_prerequis`
   ADD PRIMARY KEY (`id_prerequis`);
 
 --
--- Index pour la table `utilisateur`
+-- Index pour la table `gdf_php_utilisateur`
 --
-ALTER TABLE `utilisateur`
+ALTER TABLE `gdf_php_utilisateur`
   ADD PRIMARY KEY (`id_utilisateur`);
 
 --
@@ -171,40 +171,40 @@ ALTER TABLE `utilisateur`
 --
 
 --
--- AUTO_INCREMENT pour la table `formation`
+-- AUTO_INCREMENT pour la table `gdf_php_formation`
 --
-ALTER TABLE `formation`
+ALTER TABLE `gdf_php_formation`
   MODIFY `id_formation` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
--- AUTO_INCREMENT pour la table `prerequis`
+-- AUTO_INCREMENT pour la table `gdf_php_prerequis`
 --
-ALTER TABLE `prerequis`
+ALTER TABLE `gdf_php_prerequis`
   MODIFY `id_prerequis` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT pour la table `utilisateur`
+-- AUTO_INCREMENT pour la table `gdf_php_utilisateur`
 --
-ALTER TABLE `utilisateur`
-  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+ALTER TABLE `gdf_php_utilisateur`
+  MODIFY `id_utilisateur` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Contraintes pour les tables déchargées
 --
 
 --
--- Contraintes pour la table `demande`
+-- Contraintes pour la table `gdf_php_demande`
 --
-ALTER TABLE `demande`
-  ADD CONSTRAINT `FK_demande_id_formation` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`),
-  ADD CONSTRAINT `FK_demande_id_prerequis` FOREIGN KEY (`id_prerequis`) REFERENCES `prerequis` (`id_prerequis`);
+ALTER TABLE `gdf_php_demande`
+  ADD CONSTRAINT `FK_demande_id_formation` FOREIGN KEY (`id_formation`) REFERENCES `gdf_php_formation` (`id_formation`),
+  ADD CONSTRAINT `FK_demande_id_prerequis` FOREIGN KEY (`id_prerequis`) REFERENCES `gdf_php_prerequis` (`id_prerequis`);
 
 --
--- Contraintes pour la table `inscription`
+-- Contraintes pour la table `gdf_php_inscription`
 --
-ALTER TABLE `inscription`
-  ADD CONSTRAINT `FK_Inscription_id_formation` FOREIGN KEY (`id_formation`) REFERENCES `formation` (`id_formation`),
-  ADD CONSTRAINT `FK_Inscription_id_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `utilisateur` (`id_utilisateur`);
+ALTER TABLE `gdf_php_inscription`
+  ADD CONSTRAINT `FK_Inscription_id_formation` FOREIGN KEY (`id_formation`) REFERENCES `gdf_php_formation` (`id_formation`),
+  ADD CONSTRAINT `FK_Inscription_id_utilisateur` FOREIGN KEY (`id_utilisateur`) REFERENCES `gdf_php_utilisateur` (`id_utilisateur`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

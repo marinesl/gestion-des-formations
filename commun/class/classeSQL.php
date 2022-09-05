@@ -45,9 +45,9 @@ class ClassSQL
 		// CONNEXION A LA BASE DE DONNEES
 		$dbh = $this->Connect();
 		
-		$sql = "SELECT nom_utilisateur,prenom_utilisateur,login_utilisateur,mdp_utilisateur
-				FROM utilisateur 
-				WHERE id_utilisateur=".$id;
+		$sql = "SELECT nom_utilisateur, prenom_utilisateur, login_utilisateur, mdp_utilisateur
+				FROM gdf_php_utilisateur 
+				WHERE id_utilisateur = ".$id;
 		
 		$query = $dbh->query($sql);
 		
@@ -65,8 +65,8 @@ class ClassSQL
 		$dbh = $this->Connect();
 	
 		$sql = "SELECT id_utilisateur
-				FROM utilisateur
-				WHERE login_utilisateur='".$login."' and mdp_utilisateur='".$password."'";
+				FROM gdf_php_utilisateur
+				WHERE login_utilisateur = '".$login."' AND mdp_utilisateur = '".$password."'";
 	
 		$query = $dbh->query($sql);
 	
@@ -86,13 +86,13 @@ class ClassSQL
 		// CONNEXION A LA BASE DE DONNEES
 		$dbh = $this->Connect();
 		
-		$sql = "UPDATE utilisateur
-				SET nom_utilisateur='".$nom."',prenom_utilisateur='".$prenom."',login_utilisateur='".$login."'";
+		$sql = "UPDATE gdf_php_utilisateur
+				SET nom_utilisateur = '".$nom."', prenom_utilisateur = '".$prenom."', login_utilisateur = '".$login."'";
 				
 		if(!empty($mdp))
-			$sql .= ",mdp_utilisateur=md5('".$mdp."')";
+			$sql .= ", mdp_utilisateur = md5('".$mdp."')";
 		
-		$sql .= " WHERE id_utilisateur=".$id;
+		$sql .= " WHERE id_utilisateur = ".$id;
 		
 		$query = $dbh->query($sql);
 	}
@@ -110,8 +110,8 @@ class ClassSQL
 		// CONNEXION A LA BASE DE DONNEES
 		$dbh = $this->Connect();
 			
-		$sql = "SELECT id_formation,nom_formation,date_debut_formation,date_fin_formation,lieu_formation,prestataire_formation 
-				FROM formation
+		$sql = "SELECT id_formation, nom_formation, date_debut_formation, date_fin_formation, lieu_formation, prestataire_formation 
+				FROM gdf_php_formation
 				ORDER BY nom_formation";
 			
 		$query = $dbh->query($sql);
@@ -134,8 +134,8 @@ class ClassSQL
 		$dbh = $this->Connect();
 		
 		$sql = "SELECT nom_formation, contenu_formation, date_debut_formation, date_fin_formation, lieu_formation, prestataire_formation
-				FROM formation
-				WHERE formation.id_formation=".$id;
+				FROM gdf_php_formation
+				WHERE gdf_php_formation.id_formation = ".$id;
 		
 		$query = $dbh->query($sql);
 		
@@ -153,12 +153,12 @@ class ClassSQL
 		$dbh = $this->Connect();
 			
 		$sql = "SELECT *
-				FROM formation,inscription
-				WHERE inscription.id_formation=formation.id_formation
-				AND inscription.id_utilisateur=".$id;
+				FROM gdf_php_formation, gdf_php_inscription
+				WHERE gdf_php_inscription.id_formation = gdf_php_formation.id_formation
+				AND gdf_php_inscription.id_utilisateur = ".$id;
 		
 		if(!empty($etat))
-				$sql .= " AND inscription.etat_inscription='".$etat."'";
+				$sql .= " AND gdf_php_inscription.etat_inscription='".$etat."'";
 
 		$query = $dbh->query($sql);
 			
@@ -175,10 +175,9 @@ class ClassSQL
 		// CONNEXION A LA BASE DE DONNEES
 		$dbh = $this->Connect();
 		
-		$sql = "UPDATE inscription
-				SET etat_inscription='En cours'
-				WHERE id_formation=".$formation."
-				AND id_utilisateur=".$user;
+		$sql = "UPDATE gdf_php_inscription
+				SET etat_inscription = 'En cours'
+				WHERE id_formation = ".$formation." AND id_utilisateur = ".$user;
 		
 		$query = $dbh->query($sql);
 	}
@@ -193,9 +192,9 @@ class ClassSQL
 		// CONNEXION A LA BASE DE DONNEES
 		$dbh = $this->Connect();
 			
-		$sql = "UPDATE inscription
-				SET etat_inscription='Terminée'
-				WHERE id_formation=".$formation." AND id_utilisateur=".$user;
+		$sql = "UPDATE gdf_php_inscription
+				SET etat_inscription = 'Terminée'
+				WHERE id_formation = ".$formation." AND id_utilisateur = ".$user;
 
 		$query = $dbh->query($sql);
 	}
@@ -215,7 +214,7 @@ class ClassSQL
 		// CONNEXION A LA BASE DE DONNEES
 		$dbh = $this->Connect();
 		
-		$sql = "INSERT INTO inscription
+		$sql = "INSERT INTO gdf_php_inscription
 				VALUES('Inscrit','".$idUser."','".$idFormation."')";
 		
 		$query = $dbh->query($sql);
@@ -232,8 +231,8 @@ class ClassSQL
 		$dbh = $this->Connect();
 		
 		$sql = "SELECT COUNT(*) AS insc
-				FROM inscription
-				WHERE id_formation=".$formation." AND id_utilisateur=".$user;			
+				FROM gdf_php_inscription
+				WHERE id_formation = ".$formation." AND id_utilisateur = ".$user;			
 		
 		$query = $dbh->query($sql);
 		$resultat = $query->fetchAll(PDO::FETCH_ASSOC);
@@ -256,8 +255,8 @@ class ClassSQL
 		$dbh = $this->Connect();
 			
 		$sql = "SELECT libelle_prerequis
-				FROM prerequis,demande
-				WHERE demande.id_formation=".$id." AND prerequis.id_prerequis=demande.id_prerequis";
+				FROM gdf_php_prerequis, gdf_php_demande
+				WHERE gdf_php_demande.id_formation = ".$id." AND gdf_php_prerequis.id_prerequis = gdf_php_demande.id_prerequis";
 		
 		$query = $dbh->query($sql);
 			
